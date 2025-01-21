@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Mon Sep 16 09:16:31 2019
+Quartus Prime Version : 16.1.2 Build 203 01/18/2017 SJ Standard Edition
+Revision Name : DE1_SoC_ADC
+Top-level Entity Name : DE1_SoC_Basic_Nios2_SOC
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 3289
+Total pins : 71
+Total virtual pins : 0
+Total block memory bits : 1,368,512
+Total DSP Blocks : 2
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 1
+Total DLLs : 0

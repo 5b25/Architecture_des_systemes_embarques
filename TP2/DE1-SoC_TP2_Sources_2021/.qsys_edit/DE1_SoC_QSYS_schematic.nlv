@@ -1,0 +1,42 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst DE1_SoC_QSYS.onchip_memory2 -pg 1 -lvl 2 -y 490
+preplace inst DE1_SoC_QSYS.clk_50 -pg 1 -lvl 1 -y 630
+preplace inst DE1_SoC_QSYS.HEX3 -pg 1 -lvl 2 -y 1060
+preplace inst DE1_SoC_QSYS.HEX4 -pg 1 -lvl 2 -y 1160
+preplace inst DE1_SoC_QSYS.HEX5 -pg 1 -lvl 2 -y 1260
+preplace inst DE1_SoC_QSYS -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst DE1_SoC_QSYS.jtag_uart -pg 1 -lvl 2 -y 30
+preplace inst DE1_SoC_QSYS.sw -pg 1 -lvl 2 -y 130
+preplace inst DE1_SoC_QSYS.pll_sys -pg 1 -lvl 2 -y 680
+preplace inst DE1_SoC_QSYS.avalon_pwm_inst -pg 1 -lvl 2 -y 1460
+preplace inst DE1_SoC_QSYS.sysid_qsys -pg 1 -lvl 2 -y 600
+preplace inst DE1_SoC_QSYS.KEY -pg 1 -lvl 2 -y 1360
+preplace inst DE1_SoC_QSYS.Interval_timer -pg 1 -lvl 2 -y 250
+preplace inst DE1_SoC_QSYS.HEX0 -pg 1 -lvl 2 -y 760
+preplace inst DE1_SoC_QSYS.nios2_qsys -pg 1 -lvl 1 -y 40
+preplace inst DE1_SoC_QSYS.adc_ltc2308 -pg 1 -lvl 2 -y 350
+preplace inst DE1_SoC_QSYS.HEX1 -pg 1 -lvl 2 -y 860
+preplace inst DE1_SoC_QSYS.HEX2 -pg 1 -lvl 2 -y 960
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)HEX4.external_connection,(SLAVE)DE1_SoC_QSYS.hex4_external_connection) 1 0 2 NJ 1190 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)avalon_pwm_inst.led_pwm,(SLAVE)DE1_SoC_QSYS.avalon_pwm_inst_led_pwm) 1 0 2 NJ 1510 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)adc_ltc2308.conduit_end,(SLAVE)DE1_SoC_QSYS.adc_ltc2308_conduit_end) 1 0 2 NJ 400 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(MASTER)pll_sys.outclk2,(MASTER)DE1_SoC_QSYS.pll_sys_outclk2) 1 2 1 N
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)DE1_SoC_QSYS.hex1_external_connection,(SLAVE)HEX1.external_connection) 1 0 2 NJ 890 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)KEY.external_connection,(SLAVE)DE1_SoC_QSYS.key_external_connection) 1 0 2 NJ 1390 NJ
+preplace netloc INTERCONNECT<net_container>DE1_SoC_QSYS</net_container>(MASTER)clk_50.clk_reset,(SLAVE)HEX0.reset,(SLAVE)sw.reset,(SLAVE)KEY.reset,(SLAVE)sysid_qsys.reset,(SLAVE)HEX4.reset,(SLAVE)nios2_qsys.reset_n,(SLAVE)HEX5.reset,(SLAVE)HEX3.reset,(SLAVE)pll_sys.reset,(SLAVE)onchip_memory2.reset1,(SLAVE)Interval_timer.reset,(MASTER)nios2_qsys.jtag_debug_module_reset,(SLAVE)HEX2.reset,(SLAVE)jtag_uart.reset,(SLAVE)adc_ltc2308.reset_sink,(SLAVE)HEX1.reset,(SLAVE)avalon_pwm_inst.reset) 1 0 2 210 190 560
+preplace netloc POINT_TO_POINT<net_container>DE1_SoC_QSYS</net_container>(MASTER)pll_sys.outclk1,(SLAVE)adc_ltc2308.clock_sink_adc) 1 1 2 580 480 810
+preplace netloc INTERCONNECT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)nios2_qsys.jtag_debug_module,(SLAVE)HEX5.s1,(SLAVE)HEX1.s1,(SLAVE)KEY.s1,(SLAVE)HEX3.s1,(MASTER)nios2_qsys.data_master,(MASTER)nios2_qsys.instruction_master,(SLAVE)onchip_memory2.s1,(SLAVE)HEX2.s1,(SLAVE)sysid_qsys.control_slave,(SLAVE)avalon_pwm_inst.avalon_slave_0,(SLAVE)Interval_timer.s1,(SLAVE)sw.s1,(SLAVE)HEX0.s1,(SLAVE)adc_ltc2308.slave,(SLAVE)HEX4.s1) 1 0 2 190 170 520
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)DE1_SoC_QSYS.hex0_external_connection,(SLAVE)HEX0.external_connection) 1 0 2 NJ 790 NJ
+preplace netloc FAN_OUT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)nios2_qsys.clk,(SLAVE)jtag_uart.clk,(SLAVE)sysid_qsys.clk,(SLAVE)onchip_memory2.clk1,(SLAVE)sw.clk,(SLAVE)adc_ltc2308.clock_sink,(MASTER)pll_sys.outclk0) 1 0 3 190 30 480 590 790
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)DE1_SoC_QSYS.hex2_external_connection,(SLAVE)HEX2.external_connection) 1 0 2 NJ 990 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)DE1_SoC_QSYS.clk,(SLAVE)clk_50.clk_in) 1 0 1 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)DE1_SoC_QSYS.sw_external_connection,(SLAVE)sw.external_connection) 1 0 2 NJ 210 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)clk_50.clk_in_reset,(SLAVE)DE1_SoC_QSYS.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)pll_sys.locked,(SLAVE)DE1_SoC_QSYS.pll_sys_locked) 1 0 2 NJ 700 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)DE1_SoC_QSYS.hex5_external_connection,(SLAVE)HEX5.external_connection) 1 0 2 NJ 1290 NJ
+preplace netloc EXPORT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)HEX3.external_connection,(SLAVE)DE1_SoC_QSYS.hex3_external_connection) 1 0 2 NJ 1090 NJ
+preplace netloc FAN_OUT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)jtag_uart.irq,(SLAVE)sw.irq,(SLAVE)Interval_timer.irq,(MASTER)nios2_qsys.d_irq) 1 1 1 460
+preplace netloc FAN_OUT<net_container>DE1_SoC_QSYS</net_container>(SLAVE)HEX2.clk,(SLAVE)HEX4.clk,(SLAVE)HEX5.clk,(SLAVE)avalon_pwm_inst.clock,(SLAVE)Interval_timer.clk,(SLAVE)HEX0.clk,(MASTER)clk_50.clk,(SLAVE)HEX1.clk,(SLAVE)HEX3.clk,(SLAVE)pll_sys.refclk,(SLAVE)KEY.clk) 1 1 1 500
+levelinfo -pg 1 0 160 960
+levelinfo -hier DE1_SoC_QSYS 170 240 640 830

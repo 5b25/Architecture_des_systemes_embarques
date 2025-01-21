@@ -1,0 +1,95 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+#include "system.h"
+#include "ALTERA_AVALON_PIO_REGS.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <io.h>
+
+#define MAX_ANGLE 180  // 最大角度
+#define MIN_ANGLE 0    // 最小角度
+#define DELAY_US 100000  // 延迟 0.1 秒 (100,000 微秒)
+
+int LED_Choisir(int nombre) {
+	int hex = 0;
+
+	switch (nombre) {
+		case 0: hex = 0x3F; break;
+		case 1: hex = 0x06; break;
+		case 2: hex = 0x5B; break;
+		case 3: hex = 0x4F; break;
+		case 4: hex = 0x66; break;
+		case 5: hex = 0x6D; break;
+		case 6: hex = 0x7D; break;
+		case 7: hex = 0x07; break;
+		case 8: hex = 0x7F; break;
+		case 9: hex = 0x6F; break;
+		default: hex = 0x00; 		// Valeur par défaut
+	}
+	return hex;
+}
+
+int main () {
+	int centaine, dizaine, unite, reste;
+    int hex3_hex0;  // Variable pour stocker les 4 affichages en 7 segments
+    int angle = 0;          // 伺服电机的当前角度
+    int step = 1;           // 旋转步长
+
+		while (1) {
+			int distance = IORD(TELEMETRE_US_AVALON_0_BASE, 0)/2;
+
+			// Validation de la distance
+			if (distance < 0 || distance > 999) {
+				printf("Erreur: Valeur de distance invalide: %d\n", distance);
+				distance = 0;
+			}
+
+			//printf("distance: %d cm \n", distance);
+
+			// Pour afficher la distance sur les afficheurs 7-segments
+			centaine = distance/100;
+			reste = distance%100;
+			dizaine = reste/10;
+			unite = reste%10;
+
+	        // Convertir chaque chiffre en code 7 segments et les combiner dans hex3_hex0
+	        hex3_hex0 = (LED_Choisir(centaine) << 16) |
+	                    (LED_Choisir(dizaine) << 8) |
+	                    (LED_Choisir(unite) << 0);
+
+	        // Écrire le résultat dans le port hex3_hex0
+	        IOWR_ALTERA_AVALON_PIO_DATA(HEX3_HEX0_BASE, hex3_hex0);
+
+        	// 写入新的角度到伺服电机IP
+        	IOWR(SERVO_0_BASE, 0, angle);
+	
+        	// 在控制台输出当前角度
+        	printf("%d° -> %d cm \n", angle, distance);
+
+        	// 延迟 0.1 秒
+        	usleep(DELAY_US);
+
+        	// 更新角度：顺时针旋转到180度，再逆时针旋转回0度
+        	if (angle == MAX_ANGLE) {
+        	    step = -1;
+        	} else if (angle == MIN_ANGLE) {
+        	    step = 1;
+        	}
+        	angle += step;
+		}
+
+	  return 0;
+}
